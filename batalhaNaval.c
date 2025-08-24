@@ -10,27 +10,6 @@ void apresentacao (int linhas, int colunas) {
     printf("Bem-vindo ao jogo Batalha Naval!\n");
     printf("Tabuleiro de %d linhas por %d colunas\n", linhas, colunas);
 }
-
-void exibirTabuleiro(int tabuleiro[10][10], int posicaonavio1[2],int posicaonavio2[2]) {
-   
-    // Função para exibir o tabuleiro
-    printf("Tabuleiro:\n");
-    for (int i = 0; i <= 9; i++){
-        for (int j = 0; j <= 9; j++){
-            tabuleiro[i][j] = 0; // Inicializa todas as posições com 0
-            adicionarNavioHorizontal(i, j, tabuleiro, posicaonavio1);
-            adicionarNavioVertical(i, j, tabuleiro, posicaonavio2);
-
-           printf("%d ", tabuleiro[i][j]);
-            
-        }
-        printf("\n");
-
-    }
-}
-
-
-
 void adicionarNavioHorizontal(int i,int j,int tabuleiro[10][10], int posicaonavio1[2]) {
     // Função para adicionar um navio ao tabuleiro
 if (i == posicaonavio1[0] && j == posicaonavio1[1]) {
@@ -47,7 +26,6 @@ if (i == posicaonavio1[0] && j == posicaonavio1[1]) {
             }
 
 }
-
 void adicionarNavioVertical(int i,int j,int tabuleiro[10][10], int posicaonavio1[2]) {
     // Função para adicionar um navio ao tabuleiro
 if (i == posicaonavio1[0] && j == posicaonavio1[1]) {
@@ -62,19 +40,38 @@ if (i == posicaonavio1[0] && j == posicaonavio1[1]) {
             }
 
 } 
+void adicionarNavioDiagonal(int i,int j,int tabuleiro[10][10], int posicaonavio1[2]) {
+    if((i == posicaonavio1[0]) && (j == posicaonavio1[1])){
+        tabuleiro[posicaonavio1[0]][posicaonavio1[1]] = 3;
+    }
+    if (i == posicaonavio1[0]+1 && j == posicaonavio1[1]+1) {
+        tabuleiro[posicaonavio1[0]+1][posicaonavio1[1]+1] = 3;
+    }
+    if (i == posicaonavio1[0]+2 && j == posicaonavio1[1]+2) {
+        tabuleiro[posicaonavio1[0]+2][posicaonavio1[1]+2] = 3;
+    }
+   
+
+}
 
 
+void exibirTabuleiro(int tabuleiro[10][10], int navio1[2],int navio2[2],int navio3[2],int navio4[2]) {
+   
+    // Função para exibir o tabuleiro
+    printf("Tabuleiro:\n");
+    for (int i = 0; i <= 9; i++){
+        for (int j = 0; j <= 9; j++){
+            tabuleiro[i][j] = 0; // Inicializa todas as posições com 0
+            adicionarNavioHorizontal(i, j, tabuleiro, navio1);
+            adicionarNavioVertical(i, j, tabuleiro, navio2);
+            adicionarNavioDiagonal(i, j, tabuleiro,navio3);
+           printf("%d ", tabuleiro[i][j]);
+            
+        }
+        printf("\n");
 
-
-
-
-
-
-
-
-
-
-
+    }
+}
 
 
 int main() {
@@ -85,20 +82,14 @@ int main() {
     int tabuleiro[linhas][colunas];
     char posicionenalinha [10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
     char posicionenacoluna [10] = { '0','1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    int posicaonavio1[2] = {1,2}; // Posição do primeiro navio (linha, coluna)
-    int posicaonavio2[2] = {3,3}; // Posição do segundo navio (linha, coluna)
-    //int posicaonavio2[3][1] = {{3},{3},{3}}; // Posição do segundo navio (linha, coluna)
-    //Cria um laco de repeticao para exibir a matriz
-
-    apresentacao(linhas, colunas);
-    exibirTabuleiro(tabuleiro,posicaonavio1, posicaonavio2);
-
-
-
+    int navio1[2] = {1,2}; // Posição do primeiro navio (linha, coluna)
+    int navio2[2] = {3,3}; // Posição do segundo navio (linha, coluna)
+    int navio3[2] = {5,5}; // Posição do terceiro navio (linha, coluna)
+    int navio4[2] = {6,6}; // Posição do quarto navio (linha, coluna)
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
-
+     apresentacao(linhas, colunas);
+     exibirTabuleiro(tabuleiro,navio1,navio2,navio3,navio4);
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
