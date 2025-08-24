@@ -55,7 +55,7 @@ void adicionarNavioDiagonal(int i,int j,int tabuleiro[10][10], int posicaonavio1
 }
 
 
-void exibirTabuleiro(int tabuleiro[10][10], int navio1[2],int navio2[2],int navio3[2],int navio4[2]) {
+void exibirTabuleiro(int tabuleiro[10][10], int navio1[2],int navio2[2],int navio3[2]) {
    
     // Função para exibir o tabuleiro
     printf("Tabuleiro:\n");
@@ -89,7 +89,7 @@ int main() {
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
      apresentacao(linhas, colunas);
-     exibirTabuleiro(tabuleiro,navio1,navio2,navio3,navio4);
+     exibirTabuleiro(tabuleiro,navio1,navio2,navio3);
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
