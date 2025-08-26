@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdbool.h>
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
@@ -53,9 +53,39 @@ void adicionarNavioDiagonal(int i,int j,int tabuleiro[10][10], int posicaonavio1
    
 
 }
+void superPoderCone(int tabuleiro[10][10], bool isActive ,int i, int j) {
+    // Função para demonstrar o uso do super poder em cone
+    int cone[2] = {5,5}; // Posição do super poder em cone (linha, coluna)
+    if(isActive){
+        int multiplier = 1;
+      
+            int linhaAtual = cone[0];
+            int colunaAtual = cone[1];
+           for(int k = 0; k < 3; k++) {
+                for(int l = -k; l <= k; l++) {
+                    int novaLinha = linhaAtual + k;
+                    int novaColuna = colunaAtual + l;
+                    if(novaLinha >= 0 && novaLinha < 10 && novaColuna >= 0 && novaColuna < 10) {
+                        tabuleiro[novaLinha][novaColuna] = 1; // Marca a posição afetada pelo super poder
+                    }
+                }
+            }
 
 
-void exibirTabuleiro(int tabuleiro[10][10], int navio1[2],int navio2[2],int navio3[2]) {
+
+
+
+
+
+
+              
+
+
+    
+    }
+}
+
+void exibirTabuleiro(int tabuleiro[10][10], int navio1[2],int navio2[2],int navio3[2],int navio4[2],bool isActive) {
    
     // Função para exibir o tabuleiro
     printf("Tabuleiro:\n");
@@ -65,6 +95,8 @@ void exibirTabuleiro(int tabuleiro[10][10], int navio1[2],int navio2[2],int navi
             adicionarNavioHorizontal(i, j, tabuleiro, navio1);
             adicionarNavioVertical(i, j, tabuleiro, navio2);
             adicionarNavioDiagonal(i, j, tabuleiro,navio3);
+            adicionarNavioDiagonal(i, j, tabuleiro,navio4);
+            superPoderCone( tabuleiro, isActive, i, j);
            printf("%d ", tabuleiro[i][j]);
             
         }
@@ -80,16 +112,19 @@ int main() {
     const int colunas = 10;
     const int linhas = 10;
     int tabuleiro[linhas][colunas];
-    char posicionenalinha [10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-    char posicionenacoluna [10] = { '0','1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    int navio1[2] = {1,2}; // Posição do primeiro navio (linha, coluna)
-    int navio2[2] = {3,3}; // Posição do segundo navio (linha, coluna)
-    int navio3[2] = {5,5}; // Posição do terceiro navio (linha, coluna)
-    int navio4[2] = {6,6}; // Posição do quarto navio (linha, coluna)
+    int navio1[2] = {4,3}; // Posição do primeiro navio (linha, coluna)
+    int navio2[2] = {6,2}; // Posição do segundo navio (linha, coluna)
+    int navio3[2] = {0,0}; // Posição do terceiro navio (linha, coluna)
+    int navio4[2] = {5,5}; // Posição do quarto navio (linha, coluna)
+    int cone[2] = {2,2}; // Posição do super poder em cone (linha, coluna)
+    bool isActiveCone = true; //Ativa o super poder em cone
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
+
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
      apresentacao(linhas, colunas);
-     exibirTabuleiro(tabuleiro,navio1,navio2,navio3);
+     exibirTabuleiro(tabuleiro,navio1,navio2,navio3,navio4,isActiveCone);
+
+
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
